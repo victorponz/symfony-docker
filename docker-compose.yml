@@ -1,0 +1,41 @@
+version: "3.1"
+services:
+    db:
+        image: mysql:5.7
+        container_name: symfony-tienda-mysql
+        ports: 
+            - "3306:3306"
+        command: --default-authentication-plugin=mysql_native_password
+        environment:
+            MYSQL_DATABASE: tienda
+            MYSQL_PASSWORD: sa
+            MYSQL_ROOT_PASSWORD: sa
+        volumes:
+            - ./dump:/docker-entrypoint-initdb.d
+            - mysql:/var/lib/mysql
+        networks:
+            - default
+    symfony-tienda:
+        build: .
+        ports: 
+            - "80:80"
+        volumes:
+           # Define aquí los directorios que quieres hacer persistentes
+            - images:/var/www/html/symfony-tienda/public/img
+        links:
+            - db
+        networks:
+            - default
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        links: 
+            - db:db
+        ports:
+            - 8000:80
+        environment:
+            MYSQL_USER: root
+            MYSQL_PASSWORD: sa
+            MYSQL_ROOT_PASSWORD: sa 
+volumes:
+    mysql:
+    images:
