@@ -21,7 +21,7 @@ En este fichero hemos del proyecto
 ADD "./symfony-tienda" "/var/www/html/"
 ```
 
-## docker-compose.yaml
+## `docker-compose.yml`
 
 Es recomendable modificar el archivo `docker-compose.yml` con los datos del proyecto correcto. De esta forma podemos tener desplegados más de un proyecto.
 
