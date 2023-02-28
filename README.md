@@ -14,7 +14,7 @@ Debemos hacer una exportación de la base de datos para que se pueda importar en
 
 ## Modificar Dockerfile
 
-En este fichero hemos del proyecto
+En este fichero hemos de modificar el directorio del proyecto
 
 ```dockerfile
 # Copiar symfony-tienda en el root de apache
