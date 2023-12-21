@@ -7,6 +7,7 @@ services:
             - "3306:3306"
         command: --default-authentication-plugin=mysql_native_password
         environment:
+            MYSQL_USER: root
             MYSQL_DATABASE: tienda
             MYSQL_PASSWORD: sa
             MYSQL_ROOT_PASSWORD: sa
@@ -21,9 +22,9 @@ services:
             - "80:80"
         volumes:
            # Define aquí los directorios que quieres hacer persistentes
-            - images:/var/www/html/symfony-tienda/public/img
+            - images:/var/www/html/public/img
         links:
-            - db
+            - db:dblink
         networks:
             - default
     phpmyadmin:

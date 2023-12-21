@@ -1,0 +1,3 @@
+[submodule "symfony-tienda"]
+	path = symfony-tienda
+	url = https://github.com/victorponz/symfony-tienda
