@@ -2,13 +2,12 @@ version: "3.1"
 services:
     db:
         image: mysql:5.7
-        container_name: symfony-tienda-mysql
+        container_name: symfony-contactos-mysql
         ports: 
             - "3306:3306"
         command: --default-authentication-plugin=mysql_native_password
         environment:
-            MYSQL_USER: root
-            MYSQL_DATABASE: tienda
+            MYSQL_DATABASE: contactos
             MYSQL_PASSWORD: sa
             MYSQL_ROOT_PASSWORD: sa
         volumes:
@@ -16,15 +15,15 @@ services:
             - mysql:/var/lib/mysql
         networks:
             - default
-    symfony-tienda:
+    symfony-contactos:
         build: .
         ports: 
             - "80:80"
         volumes:
            # Define aquí los directorios que quieres hacer persistentes
-            - images:/var/www/html/public/img
+            - assets:/var/www/html/public/assets
         links:
-            - db:dblink
+            - db:db
         networks:
             - default
     phpmyadmin:
@@ -39,4 +38,6 @@ services:
             MYSQL_ROOT_PASSWORD: sa 
 volumes:
     mysql:
-    images:
+    assets:
+networks:
+    default:
