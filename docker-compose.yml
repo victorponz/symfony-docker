@@ -2,12 +2,12 @@ version: "3.1"
 services:
     db:
         image: mysql:5.7
-        container_name: symfony-contactos-mysql
+        container_name: symfony-redsocial-mysql
         ports: 
             - "3306:3306"
         command: --default-authentication-plugin=mysql_native_password
         environment:
-            MYSQL_DATABASE: contactos
+            MYSQL_DATABASE: redsocial
             MYSQL_PASSWORD: sa
             MYSQL_ROOT_PASSWORD: sa
         volumes:
@@ -15,7 +15,7 @@ services:
             - mysql:/var/lib/mysql
         networks:
             - default
-    symfony-contactos:
+    symfony-redsocial:
         build: .
         ports: 
             - "80:80"

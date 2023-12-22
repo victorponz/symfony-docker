@@ -13,7 +13,7 @@ ADD "./apache/000-default.conf/" "/etc/apache2/sites-enabled/000-default.conf"
 
 WORKDIR "/var/www/html/"
 # Copiar symfony-tienda en el root de apache
-ADD "./symfony-contactos" "/var/www/html/"
+ADD "./redsocial" "/var/www/html/"
 ADD "./files/.htaccess" "/var/www/html/public/"
 ADD "./files/composer.phar" "/var/www/html/"
 
