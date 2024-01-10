@@ -2,33 +2,40 @@ version: "3.1"
 services:
     db:
         image: mysql:5.7
-        container_name: symfony-redsocial-mysql
+        # Puedes cambiar el nombre del contenedor
+        container_name: mysql-redsocial
         ports: 
             - "3306:3306"
         command: --default-authentication-plugin=mysql_native_password
         environment:
+            # Nombre de la base de datos que debe coincidir con .env
             MYSQL_DATABASE: redsocial
             MYSQL_PASSWORD: sa
             MYSQL_ROOT_PASSWORD: sa
         volumes:
+            # Se cargan en mysql los archivos del directorio dump
             - ./dump:/docker-entrypoint-initdb.d
+            # Creamos un volumen para que los datos sean persistentes
             - mysql:/var/lib/mysql
         networks:
+            # Todos los contenedores están en la misma red
             - default
     symfony-redsocial:
         build: .
         ports: 
-            - "80:80"
+            - "8080:80"
         volumes:
-           # Define aquí los directorios que quieres hacer persistentes
+            # Define aquí los directorios que quieres hacer persistentes
+            # Por ejemplo, aquí puedes poner las imágenes ya que estas no se suben a GitHub
             - assets:/var/www/html/public/assets
         links:
+            # Nombre usado en la conexión en el archivo .env
             - db:db
         networks:
             - default
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
-        links: 
+        links:            
             - db:db
         ports:
             - 8000:80
