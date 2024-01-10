@@ -1,3 +1,7 @@
+:warning:  No **clones** este repositorio. Úsalo como plantilla para generar un nuevo.
+
+![](usar_plantilla.png)
+
 ## Despliegue
 
 Este proyecto define un contenedor con todo lo necesario para desplegar una aplicación **Symfony** con **docker**
